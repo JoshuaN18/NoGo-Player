@@ -1,5 +1,5 @@
 
-import pexpect
+import pexpect, time
 
 # path to the two players
 # player 1 plays first
@@ -64,6 +64,7 @@ def playSingleGame(alternative=False):
     istimeout=0
     sw=0
     while 1:
+        st = time.perf_counter()
         if sw==0:
             move=getMove(p1,'b')
             assert(move!='pass')
@@ -96,6 +97,8 @@ def playSingleGame(alternative=False):
         else:
             print(f'Player2 made move: {move}')
 
+        print(f'time elapsed: {time.perf_counter() - st}s')
+        
         # switch turn
         sw=1-sw
 
