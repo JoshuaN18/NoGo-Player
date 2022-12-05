@@ -375,12 +375,12 @@ class GoBoard(object):
         Play a move of color on point
         Returns whether move was legal
         """
+        opp_color = opponent(color)
         if not self._is_legal_check_simple_cases(point, color) or point == PASS or self._is_surrounded(point, opp_color):
             return False
 
 
         # General case: deal with captures, suicide, and next ko point
-        opp_color = opponent(color)
         self.board[point] = color
         neighbors = self.neighbors[point]
         for nb in neighbors:
